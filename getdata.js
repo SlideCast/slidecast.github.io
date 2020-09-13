@@ -40,8 +40,8 @@ document.getElementById("file").addEventListener('change', function(evt) {
                                 mouse_x.push(element[1][0]);
                                 mouse_y.push(element[1][1]);
                             });
+                            document.getElementById("end-time").innerHTML = convertTime(mouse_time[mouse_time.length - 1].toFixed(0));
                         });
-
                     }
 
                     if (zipEntry.name.indexOf("keyboard") != -1) {
@@ -71,3 +71,31 @@ document.getElementById("file").addEventListener('change', function(evt) {
         beginRendering(files[i].name);
     }
 });
+
+function convertTime(sec) {
+    sec = Number(sec);
+    var hours = Math.floor(sec / 3600);
+    (hours >= 1) ? sec = sec - (hours * 3600): hours = '00';
+    var min = Math.floor(sec / 60);
+    (min >= 1) ? sec = sec - (min * 60): min = '00';
+    (sec < 1) ? sec = '00': void 0;
+
+    (min.toString().length == 1) ? min = '0' + min: void 0;
+    (sec.toString().length == 1) ? sec = '0' + sec: void 0;
+
+    return hours + ':' + min + ':' + sec;
+}
+
+let searchTime = function(arr, x) {
+    let start = 0,
+        end = arr.length - 1;
+    while (start <= end) {
+        let mid = Math.floor((start + end) / 2);
+        if (arr[mid] === x) return mid;
+        else if (arr[mid] < x)
+            start = mid + 1;
+        else
+            end = mid - 1;
+    }
+    return start;
+}

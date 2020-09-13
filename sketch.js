@@ -27,14 +27,16 @@ function draw() {
     if (drawing || left || right) {
         init_time = diff_time;
         cur_time = (new Date()).getTime();
-
         if (drawing && i < mouse_y.length && 1000 * mouse_time[i] <= cur_time - init_time) {
             clear();
             // background(220);
             ellipse(mouse_x[i] * canvasWidth / originalwidth, mouse_y[i] * canvasHeight / originalheight, 10, 10);
             fill('blue');
             stroke('blue');
+            document.getElementById("start-time").innerHTML = convertTime(mouse_time[i].toFixed(0))
+            $("#slider").slider("option", "value", 100 * mouse_time[i] / mouse_time[mouse_time.length - 1])
             i = (i + 1);
+
         } else if (i == mouse_y.length) {
             // document.getElementById("result").append("completed");
             // document.getElementById('play').innerHTML = 'Play again!';
@@ -53,7 +55,7 @@ function draw() {
         }
         if (right && rightArrow < key_r.length && cur_time - init_time >= 1000 * key_r[rightArrow]) {
             onNextPage()
-            console.log("Right")
+                // console.log("Right")
             rightArrow++;
         } else if (rightArrow == key_r.length) {
             // play = 0;
@@ -63,7 +65,7 @@ function draw() {
 
         if (left && leftArrow < key_l.length && cur_time - init_time >= 1000 * key_l[leftArrow]) {
             onPrevPage()
-            console.log("LEFT")
+                // console.log("LEFT")
             leftArrow++;
         } else if (leftArrow == key_l.length) {
             // play = 0;
@@ -71,6 +73,7 @@ function draw() {
             left = false;
 
         }
+        // console.log(document.getElementById("start-time").innerHTML)
     } else {
         sound.pause();
         play = 0;
@@ -78,7 +81,6 @@ function draw() {
         diff_time = (new Date()).getTime() - cur_time + init_time;
 
     }
-
 }
 
 document.getElementById('play').addEventListener('click', playpause);
@@ -108,6 +110,22 @@ function playpause() {
         drawing = false;
         left = false;
         right = false;
-        alert("stopped");
+        // alert("stopped");
     }
+}
+
+function seeker(val) {
+    i = searchTime(mouse_time, val);
+    let curpage = (rightArrow - leftArrow);
+    leftArrow = searchTime(key_l, val);
+    rightArrow = searchTime(key_r, val);
+    pageNum += (rightArrow - leftArrow) - curpage;
+    queueRenderPage(pageNum);
+    sound.seek(val);
+    init_time = (new Date()).getTime();
+    cur_time = init_time + mouse_time[i] * 1000;
+    // init_time += mouse_time[0];
+    diff_time = (new Date()).getTime() - cur_time + init_time;
+    document.getElementById("start-time").innerHTML = convertTime(mouse_time[i].toFixed(0))
+    $("#slider").slider("option", "value", 100 * mouse_time[i] / mouse_time[mouse_time.length - 1])
 }

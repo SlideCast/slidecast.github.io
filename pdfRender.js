@@ -18,7 +18,8 @@ function renderPage(num) {
             canvasWidth *= 0.9;
         }
         btnHeight = getComputedStyle(document.getElementById("play-buttons")).getPropertyValue("height")
-        btnHeight.subs
+        btnHeight += getComputedStyle(document.getElementById("slider-container")).getPropertyValue("height")
+            // btnHeight.subs
         canvasHeight -= parseFloat(btnHeight.substr(0, btnHeight.length - 2))
         var viewport_old = page.getViewport({ scale: 1 });
         if (canvasHeight * viewport_old.width > viewport_old.height * canvasWidth) {
@@ -31,6 +32,9 @@ function renderPage(num) {
         document.getElementById('mouse').height = canvasHeight.toString() + 'px';
         document.getElementById('mouse').style.width = canvasWidth.toString() + 'px';
         document.getElementById('mouse').style.height = canvasHeight.toString() + 'px';
+        document.getElementById('slider-container').style.width = canvasWidth.toString() + 'px';
+        document.getElementById('play-buttons').style.width = canvasWidth.toString() + 'px';
+
         canvas.height = canvasHeight;
         canvas.width = canvasWidth;
         resizeCanvas(canvasWidth, canvasHeight);
@@ -125,7 +129,7 @@ document.getElementById('mouse').addEventListener('dblclick', () => {
     fullscr = !fullscr;
     if (fullscr) {
         if (document.fullscreenEnabled) {
-            console.log('yay');
+            // console.log('yay');
             document.querySelector('main').requestFullscreen();
         }
     } else {
