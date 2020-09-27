@@ -17,11 +17,36 @@ document.getElementById("file").addEventListener('change', function(evt) {
             .then(function(zip) {
                 $("#get_sld").removeClass("show").addClass("hidden");
                 zip.forEach(function(relativePath, zipEntry) {
+                    console.log(zipEntry.name)
                     if (zipEntry.name.indexOf("audio") != -1) {
                         zip.file(zipEntry.name).async("base64").then(function(data) {
-                            localStorage.setItem("audio", "data:audio/x-mp3;base64," + data);
+                            try {
+                                // console.log(data)
+                                sound = new Howl({
+                                    src: ["data:audio/x-mp3;base64," + data]
+                                });
+                                // localStorage.setItem("audio", "data:audio/x-mp3;base64," + data);
+                            } catch (e) {
+                                $("#result_block").append($("<div>", {
+                                    "class": "alert alert-danger",
+                                    text: "Error reading " + f.name + ": " + e.message
+                                }));
+                            }
                         });
                         loaded = true;
+                    }
+                    if (zipEntry.name.indexOf("slide") != -1) {
+                        zip.file(zipEntry.name).async("base64").then(function(data) {
+                            try {
+                                // arraydata = convertDataURIToBinary("data:application/pdf;base64," + data)
+                                beginRendering("data:application/pdf;base64," + data);
+                            } catch (e) {
+                                $("#result_block").append($("<div>", {
+                                    "class": "alert alert-danger",
+                                    text: "Error reading " + f.name + ": " + e.message
+                                }));
+                            }
+                        });
                     }
 
                     if (zipEntry.name.indexOf("metadata") != -1) {
@@ -58,7 +83,7 @@ document.getElementById("file").addEventListener('change', function(evt) {
                 });
 
             }, function(e) {
-                $result.append($("<div>", {
+                $("#result_block").append($("<div>", {
                     "class": "alert alert-danger",
                     text: "Error reading " + f.name + ": " + e.message
                 }));
@@ -67,8 +92,8 @@ document.getElementById("file").addEventListener('change', function(evt) {
 
     var files = evt.target.files;
     for (var i = 0; i < files.length; i++) {
+        console.log(files[i].name);
         handleFile(files[i]);
-        beginRendering(files[i].name);
     }
 });
 
@@ -98,4 +123,18 @@ let searchTime = function(arr, x) {
             end = mid - 1;
     }
     return start;
+}
+
+function convertDataURIToBinary(dataURI) {
+    var BASE64_MARKER = ';base64,';
+    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    var base64 = dataURI.substring(base64Index);
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for (var i = 0; i < rawLength; i++) {
+        array[i] = raw.charCodeAt(i);
+    }
+    return array;
 }
