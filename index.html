@@ -9,9 +9,9 @@
     <script src="jquery-ui.js"></script>
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
     <!-- <script async="" src="http://www.google-analytics.com/analytics.js"></script> -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="jszip/vendor/FileSaver.js"></script>
     <link rel="stylesheet" href="jszip/documentation/css/pygments.css">
@@ -43,6 +43,12 @@
                 }
             });
         });
+
+        function showgetsld() {
+            $("#get_sld").removeClass("hidden").addClass("show");
+            $("#show-chooser").removeClass("show").addClass("hidden");
+
+        }
     </script>
     <style>
         #slider .ui-slider-range {
@@ -55,6 +61,7 @@
         }
         
         #mouse {
+            background-color: rgb(241, 241, 241);
             position: relative;
             align-self: center;
         }
@@ -63,12 +70,14 @@
         #defaultCanvas0 {
             position: absolute;
             top: 0px;
-            left: 0px;
+            left: 50%;
+            transform: translate(-50%, 0);
         }
         
         #play-buttons {
             background-color: rgb(241, 241, 241);
             width: 100%;
+            padding-bottom: 10px;
         }
         
         .slider-container {
@@ -92,16 +101,23 @@
             text-align: center;
             flex-grow: 1;
         }
+        
+        #show-chooser {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+            margin: 30px;
+        }
+        
+        #get_sld {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
     </style>
 </head>
 
-<body style="background-color: rgb(241, 241, 241);">
-    <div id='get_sld'>
-        <h3>Choose the local(s) sld file(s)</h3>
-        <!-- <p class="note">Note : your browser will process the zip file, don't choose a file too big !</p> -->
-        <input type="file" id="file" name="file" /><br />
-        <!-- <input type="file" id="pdf" name="file" />Choose pdf<br /> -->
-    </div>
+<body>
     <div id="result_block" class="hidden">
         <!-- <h3>Content :</h3> -->
         <br>
@@ -115,14 +131,19 @@
                 <span id="end-time" class="time"></span>
             </div>
             <div id="play-buttons" class="text-center">
-                <br>
                 <button id="play">Play!</button>
                 <button id="prev">Previous</button>
                 <button id="next">Next</button> &nbsp; &nbsp;
                 <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
             </div>
-
         </main>
+        <button id="show-chooser" class="hidden" onclick=showgetsld()>Play a different file</button>
+    </div>
+    <div id='get_sld'>
+        <h1>Choose the local sld file</h1>
+        <!-- <p class="note">Note : your browser will process the zip file, don't choose a file too big !</p> -->
+        <input type="file" id="file" name="file" /><br />
+        <!-- <input type="file" id="pdf" name="file" />Choose pdf<br /> -->
     </div>
     <script type="text/javascript" src="pdfRender.js"></script>
     <script type="text/javascript" src="getdata.js"></script>

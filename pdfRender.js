@@ -24,23 +24,21 @@ function renderPage(num) {
             // btnHeight.subs
         canvasHeight -= parseFloat(btnHeight.substr(0, btnHeight.length - 2))
         var viewport_old = page.getViewport({ scale: 1 });
-        if (canvasHeight * viewport_old.width > viewport_old.height * canvasWidth) {
-            canvasHeight = viewport_old.height * canvasWidth / viewport_old.width;
+        if (canvasHeight * originalwidth > originalheight * canvasWidth) {
+            canvasHeight = originalheight * canvasWidth / originalwidth;
         } else
-            canvasWidth = viewport_old.width * canvasHeight / viewport_old.height;
-        var ratio = canvasWidth / viewport_old.width;
-        var viewport = page.getViewport({ scale: ratio });
+            canvasWidth = originalwidth * canvasHeight / originalheight;
         document.getElementById('mouse').width = canvasWidth.toString() + 'px';
         document.getElementById('mouse').height = canvasHeight.toString() + 'px';
         document.getElementById('mouse').style.width = canvasWidth.toString() + 'px';
         document.getElementById('mouse').style.height = canvasHeight.toString() + 'px';
         document.getElementById('slider-container').style.width = canvasWidth.toString() + 'px';
         document.getElementById('play-buttons').style.width = canvasWidth.toString() + 'px';
-
-        canvas.height = canvasHeight;
-        canvas.width = canvasWidth;
         resizeCanvas(canvasWidth, canvasHeight);
-
+        var ratio = min(canvasWidth / viewport_old.width, canvasHeight / viewport_old.height);
+        var viewport = page.getViewport({ scale: ratio });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
         var renderContext = {
             canvasContext: ctx,
             viewport: viewport
@@ -67,6 +65,8 @@ function renderPage(num) {
  * finised. Otherwise, executes rendering immediately.
  */
 function queueRenderPage(num) {
+    if (!loaded)
+        return;
     if (pageRendering) {
         pageNumPending = num;
     } else {

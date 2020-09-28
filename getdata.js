@@ -9,6 +9,7 @@ document.getElementById("file").addEventListener('change', function(evt) {
     // remove content
     // be sure to show the results
     $("#result_block").removeClass("hidden").addClass("show");
+    $("#show-chooser").removeClass("hidden").addClass("show");
 
     // Closure to capture the file information.
     function handleFile(f) {
