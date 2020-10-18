@@ -128,6 +128,7 @@ function beginRendering(url) {
         ctx = canvas.getContext('2d');
     console.log(canvas)
     pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+        pageNum = 0;
         console.log(pdfDoc_)
         console.log('asd')
         pdfDoc = pdfDoc_;

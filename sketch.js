@@ -79,7 +79,6 @@ function draw() {
         play = 0;
         document.getElementById('play').innerHTML = 'Play!';
         diff_time = (new Date()).getTime() - cur_time + init_time;
-
     }
 }
 

@@ -61,6 +61,7 @@ document.getElementById("file").addEventListener('change', function(evt) {
                     if (zipEntry.name.indexOf("mouse") != -1) {
                         zip.file(zipEntry.name).async("string").then(function(data) {
                             var message = JSON.parse(data);
+                            console.log(message)
                             message.forEach(element => {
                                 mouse_time.push(element[0]);
                                 mouse_x.push(element[1][0]);
