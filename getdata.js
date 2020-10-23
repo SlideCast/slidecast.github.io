@@ -59,19 +59,27 @@ document.getElementById("file").addEventListener('change', function(evt) {
                     }
 
                     if (zipEntry.name.indexOf("mouse") != -1) {
+                        mouse_time = [];
+                        mouse_x = [];
+                        mouse_y = [];
+
                         zip.file(zipEntry.name).async("string").then(function(data) {
                             var message = JSON.parse(data);
                             console.log(message)
                             message.forEach(element => {
+                                console.log(element[0])
                                 mouse_time.push(element[0]);
                                 mouse_x.push(element[1][0]);
                                 mouse_y.push(element[1][1]);
                             });
+                            seeker(mouse_time[0]);
                             document.getElementById("end-time").innerHTML = convertTime(mouse_time[mouse_time.length - 1].toFixed(0));
                         });
                     }
 
                     if (zipEntry.name.indexOf("keyboard") != -1) {
+                        key_l = [];
+                        key_r = [];
                         zip.file(zipEntry.name).async("string").then(function(data) {
                             var message = JSON.parse(data);
                             message.forEach(element => {
