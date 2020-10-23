@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Slidecast Recorder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="jquery-ui.css"> -->
+    <script src="jquery-1.12.4.js"></script>
+    <!-- <script src="jquery-ui.js"></script> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- <script async="" src="http://www.google-analytics.com/analytics.js"></script> -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="jszip/vendor/FileSaver.js"></script>
+    <link rel="stylesheet" href="jszip/documentation/css/pygments.css">
+    <link rel="stylesheet" href="jszip/documentation/css/main.css">
+    <script type="text/javascript" src="jszip/dist/jszip.js"></script>
+    <script type="text/javascript" src="http://stuk.github.io/jszip-utils/dist/jszip-utils.js"></script>
+    <script src="p5/p5.js"></script>
+    <script src="howlerjs/howler.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.js"></script>
+    <script>
+        function showgetpdf() {
+            $("#get_pdf").removeClass("hidden").addClass("show");
+            $("#show-chooser").removeClass("show").addClass("hidden");
+
+        }
+    </script>
+    <style>
+        #mouse {
+            background-color: rgb(241, 241, 241);
+            position: relative;
+            align-self: center;
+        }
+        
+        #main_canvas,
+        #defaultCanvas0 {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+        
+        #play-buttons {
+            background-color: rgb(241, 241, 241);
+            width: 100%;
+            padding-bottom: 10px;
+        }
+        
+        main {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        #show-chooser {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+            margin: 30px;
+        }
+        
+        #get_pdf {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="font-size: 50px; margin: 20px; text-align: center;">Slidecast Recorder</h1>
+    <div id="result_block" class="hidden">
+        <!-- <h3>Content :</h3> -->
+        <br>
+        <main>
+            <div id='mouse'>
+                <canvas id="main_canvas"></canvas>
+            </div>
+            <div id="play-buttons" class="text-center">
+                <button id="record">Record</button>
+                <button id="prev">Previous</button>
+                <button id="next">Next</button> &nbsp; &nbsp;
+                <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+            </div>
+        </main>
+        <button id="show-chooser" class="hidden" onclick=showgetpdf()>Play a different file</button>
+    </div>
+    <div id='get_pdf'>
+        <h1>Choose the local pdf file</h1>
+        <!-- <p class="note">Note : your browser will process the zip file, don't choose a file too big !</p> -->
+        <!-- <input type="file" id="file" name="file" /><br /> -->
+        <input type="file" id="pdf" name="file" /><br />
+    </div>
+    <script type="text/javascript" src="recorder/pdfRender.js"></script>
+    <script type="text/javascript" src="recorder/audio.js"></script>
+    <script type="text/javascript" src="recorder/sketch.js"></script>
+    <script type="text/javascript" src="recorder/saveData.js"></script>
+</body>
+
+</html>
