@@ -65,9 +65,7 @@ document.getElementById("file").addEventListener('change', function(evt) {
 
                         zip.file(zipEntry.name).async("string").then(function(data) {
                             var message = JSON.parse(data);
-                            console.log(message)
                             message.forEach(element => {
-                                console.log(element[0])
                                 mouse_time.push(element[0]);
                                 mouse_x.push(element[1][0]);
                                 mouse_y.push(element[1][1]);
