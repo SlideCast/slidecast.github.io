@@ -119,6 +119,10 @@ function seeker(val) {
     leftArrow = searchTime(key_l, val);
     rightArrow = searchTime(key_r, val);
     pageNum += (rightArrow - leftArrow) - curpage;
+    if (pageNum < 1)
+        pageNum = 1;
+    if (pageNum > pdfDoc.numPages)
+        pageNum = pdfDoc.numPages
     queueRenderPage(pageNum);
     sound.seek(val);
     init_time = (new Date()).getTime();
