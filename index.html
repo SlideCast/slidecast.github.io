@@ -40,6 +40,14 @@
         <h1 style="font-size: 50px; margin: 20px;">Slidecast</h1>
         <a role="button" class="btn btn-dark btn-lg btn-block" href="recorder.html">Recorder</a>
         <a role="button" class="btn btn-dark btn-lg btn-block" href="viewer.html">Player</a>
+<script>
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('/sw.js')
+           .then(function() { console.log("Service Worker Registered"); });
+}
+</script>
+
 </body>
 
 </html>
