@@ -19,6 +19,7 @@ const precacheResources = [
   'p5/p5.js',
   'howlerjs/howler.js',
   'pdfjs/pdf.js',
+  'pdfjs/pdf.worker.js',
   'player/pdfRender.js',
   'player/getdata.js',
   'player/sketch.js',
