@@ -10,8 +10,10 @@
 
     <script src="lib/jquery-1.9.1.js"></script>
 
-    <link rel="stylesheet" href="lib/bootstrap-3.1.1.css">
-    <link rel="stylesheet" href="lib/bootstrap-theme-3.1.1.css">
+    <link rel="stylesheet" href="lib/bootstrap-4.5.3.css">
+
+<!--     <link rel="stylesheet" href="lib/bootstrap-3.1.1.css">
+    <link rel="stylesheet" href="lib/bootstrap-theme-3.1.1.css"> -->
     <script src="lib/bootstrap-3.1.1.js"></script>
     <script type="text/javascript" src="jszip/vendor/FileSaver.js"></script>
     <link rel="stylesheet" href="jszip/documentation/css/pygments.css">
@@ -34,6 +36,10 @@
             position: relative;
             align-self: center;
         }
+        .hidden {
+    display: none!important;
+    visibility: hidden!important;
+}
         
         #main_canvas,
         #defaultCanvas0 {
@@ -71,10 +77,34 @@
 </head>
 
 <body>
-    <h1 style="font-size: 50px; margin: 20px; text-align: center;">Slidecast Recorder</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"  style="border-radius:0px">
+  <a class="navbar-brand" href="#">SlideCast</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="/index.html">Home </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/recorder.html">Recorder</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/viewer.html">Viewer</a>
+      </li>
+     <li class="nav-item">
+        <a class="nav-link" href="/instructions.html">Instructions</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    <h1 style="font-size: 50px; margin: 10px; text-align: center;">Slidecast Recorder</h1>
     <div id="result_block" class="hidden">
         <!-- <h3>Content :</h3> -->
         <br>
+        <center><p> Please do not resize the PDF while recording (double clicking will cause it to go fullscreen) as this aborts the recording and the recording will auto download </p></center>
+        <center><p> If you want to record in full screen double click to go to full screen and record from full screen </p> </center>
         <main>
             <div id='mouse'>
                 <canvas id="main_canvas"></canvas>
@@ -86,13 +116,13 @@
                 <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
             </div>
         </main>
-        <button id="show-chooser" class="hidden" onclick=showgetpdf()>Play a different file</button>
+        <center><button id="show-chooser" class="btn btn-primary hidden" onclick=showgetpdf()>Play a different file</button></center>
     </div>
     <div id='get_pdf'>
-        <h1>Choose the local pdf file</h1>
+        <center><h5>Choose the local pdf file</h5></center>
         <!-- <p class="note">Note : your browser will process the zip file, don't choose a file too big !</p> -->
         <!-- <input type="file" id="file" name="file" /><br /> -->
-        <input type="file" id="pdf" name="file" /><br />
+        <div class="d-flex justify-content-center"><input type="file" id="pdf" name="file" /><br /></div>
     </div>
     <script type="text/javascript" src="recorder/pdfRender.js"></script>
     <script type="text/javascript" src="recorder/audio.js"></script>
