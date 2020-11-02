@@ -11,8 +11,13 @@
     <script src="lib/bootstrap-4.5.3.js"></script>
     <title> Slidecast</title>
     <style>
-        .html,
-        .body {
+        body {
+            background-color: #272b2f!important;
+            color: white;
+        }
+        
+        html,
+        body {
             height: 100%;
             width: 100%;
         }
@@ -37,27 +42,27 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">SlideCast</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#">SlideCast</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/recorder.html">Recorder</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/viewer.html">Viewer</a>
-      </li>
-     <li class="nav-item">
-        <a class="nav-link" href="/instructions.html">Instructions</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="recorder.html">Recorder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="viewer.html">Viewer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="instructions.html">Instructions</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="flex-container">
         <h1 style="font-size: 50px; margin: 20px;">Slidecast</h1>
         <h5 style="font-size: 20px;">Low Bandwith Lecture Delivery Platforn</h5>
@@ -65,15 +70,19 @@
         <a role="button" class="btn btn-dark btn-lg btn-block" href="viewer.html">Player</a>
         <a role="button" class="btn btn-dark btn-lg btn-block" href="instructions.html">Instructions</a>
         <br>
-        <center><p> You can install SlideCast by clicking on the Install Button on your address bar in Chrome (at the rightmost end of the address bar click on the plus symbol). <br>SlideCast is supported only on Chrome at the moment. </p></center>
+        <center>
+            <p> You can install SlideCast by clicking on the Install Button on your address bar in Chrome (at the rightmost end of the address bar click on the plus symbol). <br>SlideCast is supported only on Chrome at the moment. </p>
+        </center>
     </div>
-<script>
-if('serviceWorker' in navigator) {
-  navigator.serviceWorker
-           .register('/sw.js')
-           .then(function() { console.log("Service Worker Registered"); });
-}
-</script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/sw.js')
+                .then(function() {
+                    console.log("Service Worker Registered");
+                });
+        }
+    </script>
 
 </body>
 

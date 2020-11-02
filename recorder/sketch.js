@@ -42,6 +42,7 @@ startrecording = async() => {
     btn = document.getElementById('record');
     btn.innerHTML = record ? "Stop" : "Record";
     if (record) {
+        $("#slider-container").removeClass("show").addClass("hidden");
         console.log("start")
         recorder = await recordAudio();
         recorder.start();
@@ -52,6 +53,7 @@ startrecording = async() => {
         keyboard = [];
     }
     if (!record) {
+        $("#slider-container").removeClass("hidden").addClass("show");
         sound = await recorder.stop();
         // sound.play();
         mouseData = JSON.stringify(mouse)

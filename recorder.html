@@ -9,10 +9,11 @@
     <script src="lib/jquery-1.12.4.js"></script>
 
     <script src="lib/jquery-1.9.1.js"></script>
-
+    <script src="lib/jquery-ui.js"></script>
+    <link rel="stylesheet" href="lib/jquery-ui.css">
     <link rel="stylesheet" href="lib/bootstrap-4.5.3.css">
 
-<!--     <link rel="stylesheet" href="lib/bootstrap-3.1.1.css">
+    <!--     <link rel="stylesheet" href="lib/bootstrap-3.1.1.css">
     <link rel="stylesheet" href="lib/bootstrap-theme-3.1.1.css"> -->
     <script src="lib/bootstrap-3.1.1.js"></script>
     <script type="text/javascript" src="jszip/vendor/FileSaver.js"></script>
@@ -29,29 +30,93 @@
             $("#show-chooser").removeClass("show").addClass("hidden");
 
         }
+        var bitrate = 0;
+
+        $(function() {
+            var handle = $("#custom-handle");
+            $("#slider").slider({
+                animate: true,
+                range: "min",
+                value: 0,
+                min: 0,
+                max: 1000,
+                create: function() {
+                    bitrate = (224 * $(this).slider("value") + 96000)
+                    handle.text(Math.trunc(bitrate / 1000));
+                },
+                // step: 50,
+                slide: function(event, ui) {
+                    bitrate = (224 * ui.value + 96000);
+                    handle.text(Math.trunc(bitrate / 1000));
+                },
+            });
+        });
     </script>
     <style>
+        body {
+            background-color: #272b2f!important;
+            color: white;
+        }
+        
+        #custom-handle {
+            width: 3em;
+            height: 1.6em;
+            top: 50%;
+            margin-top: -.8em;
+            text-align: center;
+            line-height: 1.6em;
+        }
+        
+        #slider .ui-slider-range {
+            background: grey;
+        }
+        
+        #slider .ui-slider-handle {
+            border-color: black;
+            border-radius: 50px;
+        }
+        
+        .slider-container {
+            z-index: 5;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: space-between;
+            background-color: rgb(15, 15, 15);
+            width: 100%;
+        }
+        
         #mouse {
-            background-color: rgb(241, 241, 241);
+            background-color: rgb(15, 15, 15);
             position: relative;
             align-self: center;
         }
+        
         .hidden {
-    display: none!important;
-    visibility: hidden!important;
-}
+            display: none!important;
+            visibility: hidden!important;
+        }
+        
+        .head {
+            margin: 10px;
+            text-align: center;
+            flex-grow: 1;
+            padding-right: 10px;
+        }
         
         #main_canvas,
         #defaultCanvas0 {
             position: absolute;
             top: 0px;
             left: 50%;
+            border: 1px grey solid;
             transform: translate(-50%, 0);
         }
         
         #play-buttons {
-            background-color: rgb(241, 241, 241);
+            background-color: rgb(15, 15, 15);
             width: 100%;
+            border: 1px grey solid;
             padding-bottom: 10px;
         }
         
@@ -72,39 +137,44 @@
             position: absolute;
             left: 50%;
             transform: translate(-50%, 0);
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"  style="border-radius:0px">
-  <a class="navbar-brand" href="#">SlideCast</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border-radius:0px">
+        <a class="navbar-brand" href="#">SlideCast</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item ">
-        <a class="nav-link" href="/index.html">Home </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/recorder.html">Recorder</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/viewer.html">Viewer</a>
-      </li>
-     <li class="nav-item">
-        <a class="nav-link" href="/instructions.html">Instructions</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="index.html">Home </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="recorder.html">Recorder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="viewer.html">Viewer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="instructions.html">Instructions</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <h1 style="font-size: 50px; margin: 10px; text-align: center;">Slidecast Recorder</h1>
     <div id="result_block" class="hidden">
         <!-- <h3>Content :</h3> -->
         <br>
-        <center><p> Please do not resize the PDF while recording (double clicking will cause it to go fullscreen) as this aborts the recording and the recording will auto download </p></center>
-        <center><p> If you want to record in full screen double click to go to full screen and record from full screen </p> </center>
+        <center>
+            <p> Please do not resize the PDF while recording (double clicking will cause it to go fullscreen) as this aborts the recording and the recording will auto download </p>
+        </center>
+        <center>
+            <p> If you want to record in full screen double click to go to full screen and record from full screen </p>
+        </center>
         <main>
             <div id='mouse'>
                 <canvas id="main_canvas"></canvas>
@@ -114,12 +184,23 @@
                 <button id="prev">Previous</button>
                 <button id="next">Next</button> &nbsp; &nbsp;
                 <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+                <br>
+                <div id="slider-container" class="slider-container show">
+                    <span class="head">Bit Rate(Kbps):</span>
+                    <div id="slider" style='width: 60%; display:inline-block;flex-grow: 100;align-self:center;'>
+                        <div id="custom-handle" class="ui-slider-handle"></div>
+                    </div>
+                    <span class="head"></span>
+                </div>
             </div>
+
         </main>
-        <center><button id="show-chooser" class="btn btn-primary hidden" onclick=showgetpdf()>Play a different file</button></center>
+        <center><button id="show-chooser" class="btn btn-light hidden" onclick=showgetpdf()>Play a different file</button></center>
     </div>
     <div id='get_pdf'>
-        <center><h5>Choose the local pdf file</h5></center>
+        <center>
+            <h5>Choose the local pdf file</h5>
+        </center>
         <!-- <p class="note">Note : your browser will process the zip file, don't choose a file too big !</p> -->
         <!-- <input type="file" id="file" name="file" /><br /> -->
         <div class="d-flex justify-content-center"><input type="file" id="pdf" name="file" /><br /></div>

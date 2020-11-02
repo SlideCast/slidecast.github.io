@@ -1,9 +1,9 @@
 const recordAudio = () =>
     new Promise(async resolve => {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        const mediaRecorder = new MediaRecorder(stream);
+        const mediaRecorder = new MediaRecorder(stream, { audioBitsPerSecond: bitrate });
         const audioChunks = [];
-
+        console.log(bitrate)
         mediaRecorder.addEventListener("dataavailable", event => {
             audioChunks.push(event.data);
         });

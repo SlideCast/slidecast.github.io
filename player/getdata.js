@@ -70,8 +70,9 @@ document.getElementById("file").addEventListener('change', function(evt) {
                                 mouse_x.push(element[1][0]);
                                 mouse_y.push(element[1][1]);
                             });
-                            seeker(mouse_time[0]);
                             document.getElementById("end-time").innerHTML = convertTime(mouse_time[mouse_time.length - 1].toFixed(0));
+                            seeker(mouse_time[0]);
+                            console.log(mouse_time[mouse_time.length - 1].toFixed(0))
                         });
                     }
 

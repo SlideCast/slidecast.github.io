@@ -141,7 +141,7 @@ function beginRendering(url) {
         loaded = true;
         if (record)
             startrecording()
-        gofullscreen();
+            // gofullscreen();
         pdf = url
     });
 }

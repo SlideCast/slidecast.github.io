@@ -11,9 +11,9 @@
     <script src="lib/jquery-ui.js"></script>
 
     <link rel="stylesheet" href="lib/bootstrap-4.5.3.css">
-<!--     <link rel="stylesheet" href="lib/bootstrap-3.1.1.css">
+    <!--     <link rel="stylesheet" href="lib/bootstrap-3.1.1.css">
     <link rel="stylesheet" href="lib/bootstrap-theme-3.1.1.css"> -->
-<!--     <script src="lib/bootstrap-3.1.1.js"></script> -->
+    <!--     <script src="lib/bootstrap-3.1.1.js"></script> -->
 
     <script type="text/javascript" src="jszip/vendor/FileSaver.js"></script>
     <link rel="stylesheet" href="jszip/documentation/css/pygments.css">
@@ -53,21 +53,27 @@
         }
     </script>
     <style>
+        body {
+            background-color: #272b2f!important;
+            color: white;
+        }
+        
         #slider .ui-slider-range {
-            background: #729fcf;
+            background: grey;
         }
         
         #slider .ui-slider-handle {
-            border-color: #729fcf;
+            border-color: grey;
             border-radius: 50px;
         }
+        
         .hidden {
-    display: none!important;
-    visibility: hidden!important;
-}
+            display: none!important;
+            visibility: hidden!important;
+        }
         
         #mouse {
-            background-color: rgb(241, 241, 241);
+            background-color: rgb(15, 15, 15);
             position: relative;
             align-self: center;
         }
@@ -78,12 +84,16 @@
             top: 0px;
             left: 50%;
             transform: translate(-50%, 0);
+            border: 1px grey solid;
         }
         
         #play-buttons {
-            background-color: rgb(241, 241, 241);
+            background-color: rgb(15, 15, 15);
             width: 100%;
             padding-bottom: 10px;
+            border-bottom: 1px grey solid;
+            border-left: 1px grey solid;
+            border-right: 1px grey solid;
         }
         
         .slider-container {
@@ -92,14 +102,18 @@
             flex-direction: row;
             align-items: stretch;
             justify-content: space-between;
-            background-color: rgb(241, 241, 241);
+            background-color: rgb(15, 15, 15);
             width: 100%;
+            border-top: 1px grey solid;
+            border-left: 1px grey solid;
+            border-right: 1px grey solid;
         }
         
         main {
             display: flex;
             align-items: center;
             flex-direction: column;
+            color: white;
         }
         
         .time {
@@ -116,6 +130,7 @@
         }
         
         #get_sld {
+            margin: 30px;
             position: absolute;
             left: 50%;
             transform: translate(-50%, 0);
@@ -125,27 +140,27 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border-radius:0px">
-  <a class="navbar-brand" href="#">SlideCast</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#">SlideCast</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item ">
-        <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/recorder.html">Recorder</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/viewer.html">Viewer</a> 
-      </li>
-     <li class="nav-item">
-        <a class="nav-link" href="/instructions.html">Instructions</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="recorder.html">Recorder</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="viewer.html">Viewer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="instructions.html">Instructions</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <h1 style="font-size: 50px; margin: 20px; text-align: center;">Slidecast Player</h1>
     <div id="result_block" class="hidden">
         <!-- <h3>Content :</h3> -->
@@ -166,12 +181,13 @@
                 <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
             </div>
         </main>
-        <button id="show-chooser" class="hidden" onclick=showgetsld()>Play a different file</button>
+        <button id="show-chooser" class="btn btn-light hidden" onclick=showgetsld()>Play a different file</button>
     </div>
     <div id='get_sld'>
-        <center><h5>Choose the local sld file</h5>
-        <!-- <p class="note">Note : your browser will process the zip file, don't choose a file too big !</p> -->
-        <input type="file" id="file" name="file" /><br /></center>
+        <center>
+            <h5>Choose the local sld file</h5>
+            <!-- <p class="note">Note : your browser will process the zip file, don't choose a file too big !</p> -->
+            <input type="file" id="file" name="file" /><br /></center>
         <!-- <input type="file" id="pdf" name="file" />Choose pdf<br /> -->
     </div>
     <script type="text/javascript" src="player/pdfRender.js"></script>

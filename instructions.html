@@ -17,6 +17,11 @@
             width: 100%;
         }
         
+        body {
+            background-color: #272b2f!important;
+            color: white;
+        }
+        
         .flex-container {
             display: flex;
             height: 100%;
@@ -37,62 +42,70 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">SlideCast</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#">SlideCast</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item ">
-        <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/recorder.html">Recorder</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/viewer.html">Viewer</a>
-      </li>
-     <li class="nav-item active">
-        <a class="nav-link" href="/instructions.html">Instructions</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="recorder.html">Recorder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="viewer.html">Viewer</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="instructions.html">Instructions</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="flex-container">
         <h1 style="font-size: 50px; margin: 10px;">Slidecast</h1>
         <h5 style="font-size: 20px;">Low Bandwith Lecture Delivery Platforn</h5>
 
-        <div class="card" style="width: 35rem;margin-top:15px;">
-          <div class="card-body">
-            <h5 class="card-title">About SlideCast</h5>
-            <p class="card-text">SlideCast is a low bandwith lecture recording and viewing platform that records the mouse pointer movements and audio along with the PDF instead of the video recording to reduce bandwith consumption. <br>There are 2 main components, the recorder and viewer.</p>
+        <div class="card" style="width: 35rem;margin-top:15px; background-color: #343a40!important;">
+            <div class="card-body">
+                <h5 class="card-title">About SlideCast</h5>
+                <p class="card-text">SlideCast is a low bandwith lecture recording and viewing platform that records the mouse pointer movements and audio along with the PDF instead of the video recording to reduce bandwith consumption. <br>There are 2 main components, the
+                    recorder and viewer.</p>
 
-          </div>
+            </div>
         </div>
-        <div class="card" style="width: 35rem;margin-top:15px;">
-          <div class="card-body">
-            <h5 class="card-title">Installation</h5>
-            <p class="card-text">SlideCast can be used as a web application or can be installed as a Progressive Web Application on Chrome/Firefox. You can install SlideCast by clicking on the Install Button on your address bar in Chrome (at the rightmost end of the address bar there is a plus symbol which is used for installing). SlideCast can then be started as a normal application from your system. Even if you do not install SlideCast is automatically cached and can be used offline! <br>SlideCast is supported only on Chrome at the moment.</p>
+        <div class="card" style="width: 35rem;margin-top:15px;background-color: #343a40!important;">
+            <div class="card-body">
+                <h5 class="card-title">Installation</h5>
+                <p class="card-text">SlideCast can be used as a web application or can be installed as a Progressive Web Application on Chrome/Firefox. You can install SlideCast by clicking on the Install Button on your address bar in Chrome (at the rightmost end of the address
+                    bar there is a plus symbol which is used for installing). SlideCast can then be started as a normal application from your system. Even if you do not install SlideCast is automatically cached and can be used offline! <br>SlideCast is
+                    supported only on Chrome at the moment.</p>
 
-          </div>
+            </div>
         </div>
-        <div class="card" style="width: 35rem;margin-top:15px;">
-          <div class="card-body">
-            <h5 class="card-title">Recorder Instructions</h5>
-            <p class="card-text">In the recorder simply choose the PDF that you want to present. This would load after some time on the PDF stage and take you to full screen. Click on Record and provide microphone permissions. Now simply present the file as you would normally. On finishing click on Stop. After some processing time the recording would be downloaded to your system as a ZIP file. <br> You can now rename this file and distribute it to your viewers. Please make sure that while recording you are not resizing the window or switching out from full screen view. It is recommended to record striclty in full screen mode (you can get there by double clicking). To move slides you can use your arrow keys or the buttons at the bottom.</p>
+        <div class="card" style="width: 35rem;margin-top:15px;background-color: #343a40!important;">
+            <div class="card-body">
+                <h5 class="card-title">Recorder Instructions</h5>
+                <p class="card-text">In the recorder simply choose the PDF that you want to present. This would load after some time on the PDF stage and take you to full screen. Click on Record and provide microphone permissions. Now simply present the file as you would
+                    normally. On finishing click on Stop. After some processing time the recording would be downloaded to your system as a ZIP file. <br> You can now rename this file and distribute it to your viewers. Please make sure that while recording
+                    you are not resizing the window or switching out from full screen view. It is recommended to record striclty in full screen mode (you can get there by double clicking). To move slides you can use your arrow keys or the buttons at the
+                    bottom.
+                </p>
 
-          </div>
+            </div>
         </div>
-          <div class="card" style="width: 35rem;margin-top:15px;">
-          <div class="card-body">
-            <h5 class="card-title">Viewer Instructions</h5>
-            <p class="card-text">For viewing simply load the recording file by choosing the file. After some processing time the file would be loaded. You can then easily play the file, pause, seek forward as per your convenience. Clicking twice on the screen also starts full screen mode.</p>
+        <div class="card" style="width: 35rem;margin-top:15px;background-color: #343a40!important;">
+            <div class="card-body">
+                <h5 class="card-title">Viewer Instructions</h5>
+                <p class="card-text">For viewing simply load the recording file by choosing the file. After some processing time the file would be loaded. You can then easily play the file, pause, seek forward as per your convenience. Clicking twice on the screen also starts
+                    full screen mode.</p>
 
-          </div>
+            </div>
         </div>
         <br>
     </div>
-<!-- <script>
+    <!-- <script>
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
            .register('/sw.js')
