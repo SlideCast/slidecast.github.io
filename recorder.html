@@ -39,15 +39,15 @@
                 range: "min",
                 value: 0,
                 min: 0,
-                max: 1000,
+                max: 1024,
                 create: function() {
-                    bitrate = (224 * $(this).slider("value") + 96000)
-                    handle.text(Math.trunc(bitrate / 1000));
+                    bitrate = (100 * $(this).slider("value") + 20480)
+                    handle.text(Math.trunc(bitrate / 1024));
                 },
                 // step: 50,
                 slide: function(event, ui) {
-                    bitrate = (224 * ui.value + 96000);
-                    handle.text(Math.trunc(bitrate / 1000));
+                    bitrate = (100 * $(this).slider("value") + 20480)
+                    handle.text(Math.trunc(bitrate / 1024));
                 },
             });
         });
