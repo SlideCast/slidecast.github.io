@@ -2,11 +2,13 @@
 ### Low bandwidth preentation software
 
 SlideCast is a low bandwith lecture recording and viewing platform that records the mouse pointer movements and audio along with the PDF instead of the video recording to reduce bandwith consumption.
-There are 2 main components, the recorder and viewer.
 
 ## Idea
 The slides are stored as a pdf while the mouse events and keystrokes are stored separately to get to know about the transitions and the audio is stored as an mp3 file. Having this much data, we can re-create the video easily as the current frame is created using the slide as background and mouse pointer over it. The transitions are identified using the keystrokes. This is the whole visual data in the video and along with the audio, this completes the whole video.
 
+There are 2 main components, the recorder and viewer.
+
+![](screenshot.png)
 
 ## Installation
 SlideCast can be used as a web application or can be installed as a Progressive Web Application on Chrome/Firefox. You can install SlideCast by clicking on the Install Button on your address bar in Chrome (at the rightmost end of the address bar there is a plus symbol which is used for installing). SlideCast can then be started as a normal application from your system. Even if you do not install SlideCast is automatically cached and can be used offline!
