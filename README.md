@@ -1,4 +1,5 @@
 # Slidecast: https://slidecast.github.io
+#### Full Report can be found [here](report.pdf)
 ### Low bandwidth preentation software
 
 SlideCast is a low bandwith lecture recording and viewing platform that records the mouse pointer movements and audio along with the PDF instead of the video recording to reduce bandwith consumption.
